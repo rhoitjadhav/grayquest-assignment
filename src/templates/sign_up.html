@@ -1,0 +1,16 @@
+<html>
+
+<head></head>
+
+<body>
+    <form action="{{ url_for('auth.sign_up') }}", method="POST">
+        First Name: <input type="text", name="first_name"></input>
+        Last Name: <input type="text", name="last_name"></input>
+        Email: <input type="text", name="email"></input>
+        Username: <input type="text", name="username"></input>
+        Password: <input type="password", name="password"></input>
+        <input type="submit", value="Submit"></input>
+    </form>
+</body>
+
+</html>
