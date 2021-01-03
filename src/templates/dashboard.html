@@ -3,7 +3,13 @@
 <head></head>
 
 <body>
-    <h2>Dashboard</h2>
+<h2>Dashboard</h2>
+<div>
+    This website is using cookies.
+    <a href="{{ url_for('dashboard.wrapper') }}">Accept</a> <a
+        href="{{ url_for('auth.sign_out', msg='Signing you out')}}">Decline</a>
+</div>
+Session: {{ session }}
 </body>
 
 </html>

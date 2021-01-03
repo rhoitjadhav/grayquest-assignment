@@ -18,17 +18,21 @@
         clear: both;
         display: table;
     }
+
+
+
 </style>
 
 <body>
-    <h2>Memes</h2>
-    <div class="row">
-        {% for meme in memes %}
-        <div class="column">
-            <img src="{{ meme['url'] }}" alt="Snow" style="width:100%">
-        </div>
-        {% endfor %}
+<h2>Memes</h2>
+<div class="row">
+    {% for meme in memes %}
+    <div class="column">
+        <img src="{{ meme['url'] }}" alt="Snow" height="200" width="200">
+        {{ meme['name'] }}
     </div>
+    {% endfor %}
+</div>
 </body>
 
 </html>
