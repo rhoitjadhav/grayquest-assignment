@@ -1,14 +1,15 @@
 <html>
 
-<head></head>
+<head>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sign_in.js') }}"></script>
+</head>
 
 <body>
-<form action="{{ url_for('auth.sign_in') }}" method="POST">
-    Username: <input type="text" name="username"/>
-    Password: <input type="password" name="password"/>
-    <input type="submit" value="Submit"/>
+Username: <input type="text" id="username" required/>
+Password: <input type="password" id="password" required/>
+<button>Submit</button>
 
-</form>
 <form action="{{ url_for('auth.sign_up') }}" method="GET">
     Create Account? <input type="submit" value="Sign Up"/>
 </form>
