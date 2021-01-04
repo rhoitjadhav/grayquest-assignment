@@ -1,28 +1,8 @@
 <html>
 
-<head></head>
-<style>
-    * {
-        box-sizing: border-box;
-    }
-
-    .column {
-        float: left;
-        width: 33.33%;
-        padding: 5px;
-    }
-
-    /* Clearfix (clear floats) */
-    .row::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
-
-
-
-</style>
-
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/memes.css') }}">
+</head>
 <body>
 <h2>Memes</h2>
 <div class="row">
@@ -33,6 +13,7 @@
     </div>
     {% endfor %}
 </div>
+<a href="{{ url_for('auth.sign_out') }}">Sign Out</a>
 </body>
 
 </html>
