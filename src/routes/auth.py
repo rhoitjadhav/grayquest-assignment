@@ -1,18 +1,25 @@
 # Packages
-from flask import Blueprint, render_template, request, redirect, url_for
+import random
+import string
+from datetime import datetime, timedelta
+from flask import Blueprint, render_template, request, redirect, url_for, make_response, jsonify
 
 # Modules
 from src.models.users import Users, db
 
-
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+
+
+def random_str():
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=16))
 
 
 # Sign In Page
 @bp.route('/sign-in', methods=['GET', 'POST'])
 def sign_in():
     if request.method == 'GET':
-        return render_template('sign_in.html')
+        response = make_response(render_template('sign_in.html'))
+        return response
 
     else:
         username = request.form['username']
@@ -20,9 +27,25 @@ def sign_in():
 
         user = Users.query.filter_by(username=username).first()
         if user:
-            return redirect(url_for('dashboard.dashboard'))
-        else:
-            return render_template('failure.html', msg='Username or Password is incorrect')
+            if username == user.username and user.password == password:
+                expire_date = datetime.now() + timedelta(days=31)
+                return jsonify({
+                    'success': True,
+                    'message': "You're Signed in!",
+                    'redirect': '/dashboard',
+                    'cookie': {
+                        'name': 'sessionId',
+                        'value': random_str(),
+                        'expires': [expire_date.year, expire_date.month, expire_date.day, expire_date.hour,
+                                    expire_date.minute, expire_date.second, 0],
+                        'path': '/'
+                    }
+                })
+
+        return jsonify({
+            'success': False,
+            'message': 'Username or Password is incorrect'
+        })
 
 
 # Sign Up Page
@@ -42,4 +65,13 @@ def sign_up():
 
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('dashboard.dashboard'))
+        return redirect(url_for('auth.sign_in'))
+
+
+# Sign Out Page
+@bp.route('/sign-out')
+def sign_out():
+    msg = request.args.get('msg', '')
+    response = make_response(render_template('sign_out.html', msg=msg))
+    response.delete_cookie('sessionId')
+    return response
