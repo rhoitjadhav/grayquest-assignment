@@ -24,7 +24,7 @@ $ python app.py
 ```
 
 ## Database Schema Creation
-`database.db` file contains predefined SQLite database schema and users credentials data, however if you want to create your own database schema then delete this file and call the http://127.0.0.1:5000/create-db` api which will create the sqlite database schema file.
+`database.db` file contains predefined SQLite database schema and users credentials data, however if you want to create your own database schema then delete this file and call the `http://127.0.0.1:5000/create-db` api which will create the sqlite database schema file.
 
 ## Project Structure Overview
 The application consists of 5 directories 7 files along with README.md and .gitignore
@@ -38,4 +38,5 @@ The application consists of 5 directories 7 files along with README.md and .giti
 - config.py -> All the application configuration variables are placed in this file
 - app.py -> Entry point of the application
 - decorators.py -> All decorator functions are placed in this file 
+- Pipfile -> pipenv configuration file 
 - requirement.txt -> Python packages and dependencies file
