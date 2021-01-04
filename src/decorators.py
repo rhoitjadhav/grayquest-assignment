@@ -5,12 +5,11 @@ from functools import wraps
 
 def login_required(func):
     @wraps(func)
-    def wrapper():
-        cookies = request.cookies.get('session')
+    def wrapper(*args, **kwargs):
+        cookies = request.cookies.get('sessionId')
         if cookies:
-            return func()
+            return func(*args, **kwargs)
 
         return redirect(url_for('auth.sign_in'))
 
-    print(wrapper.__name__)
     return wrapper
