@@ -28,11 +28,16 @@ def sign_in():
         user = Users.query.filter_by(username=username).first()
         if user:
             if username == user.username and user.password == password:
+                if user.cookie_consent == "Accept":
+                    redirect_url = '/dashboard/memes'
+                else:
+                    redirect_url = '/dashboard'
+
                 expire_date = datetime.now() + timedelta(days=31)
                 return jsonify({
                     'success': True,
                     'message': "You're Signed in!",
-                    'redirect': '/dashboard',
+                    'redirect': redirect_url,
                     'cookie': {
                         'name': 'sessionId',
                         'value': random_str(),
