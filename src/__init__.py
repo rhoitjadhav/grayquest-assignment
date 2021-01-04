@@ -21,10 +21,10 @@ def create_app(config_file='config.py'):
 
     # DB Creation
     from src.models import users
+
     @app.route('/create-db')
     def create_db():
         db.create_all()
         return "DB Created!"
 
     return app
-    
