@@ -1,15 +1,23 @@
 <html>
 
-<head></head>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</head>
 
 <body>
 <h2>Dashboard</h2>
 <div>
-    This website is using cookies.
-    <a href="{{ url_for('dashboard.wrapper') }}">Accept</a> <a
-        href="{{ url_for('auth.sign_out', msg='Signing you out')}}">Decline</a>
+    This website is using cookies for better experience and usage.
+    <button type="submit" value="Accept">Accept</button>
+    <button type="submit" value="Decline">Decline</button>
+
+    <div class="footer">
+        <p id="cookie"></p>
+        <script>cookie_info_auto_fade()</script>
+    </div>
 </div>
-Session: {{ session }}
 </body>
 
 </html>
