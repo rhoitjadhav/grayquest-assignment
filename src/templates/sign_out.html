@@ -4,7 +4,7 @@
 
 <body>
 <h2>Logout</h2>
-{{ msg }}
+<a href="{{ url_for('auth.sign_in') }}">Sign In Here</a>
+<script>sessionStorage.clear()</script>
 </body>
-
 </html>
