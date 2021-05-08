@@ -1,4 +1,4 @@
-# GrayQuest Assignment
+# Memes Page
 
 ## Installation
 `install.sh` will install all dependencies required to run this application which includes python 3, pip, sqlite database and other required packages which is defined in `requirements.txt.` Additionally, it will ask you for the permission to install the packages.
